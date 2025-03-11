@@ -1,32 +1,15 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4%;
 }
-
-.logo {
-  height: 50px;
-  cursor: pointer;
+.navbar .logo{
+    width: max(10%,80px);
 }
-
-.login-conditon {
-  font-size: 16px;
-  cursor: pointer;
-  color: #007bff;
-  transition: color 0.3s ease;
+.navbar .profile{
+    width: 40px;
 }
-
-.login-conditon:hover {
-  color: #0056b3;
-}
-
-.profile {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  object-fit: cover;
+.login-conditon{
+    font-size: 20px;
 }

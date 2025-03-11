@@ -4,9 +4,6 @@ import order_icon from './order_icon.png'
 import profile_image from './profile_image.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.png'
-import user_icon from './user_icon.png'
-import product_icon from './product_icon.png'
-
 
 export const assets ={
     logo,
@@ -14,9 +11,7 @@ export const assets ={
     order_icon,
     profile_image,
     upload_area,
-    parcel_icon,
-    user_icon,
-    product_icon
+    parcel_icon
 }
 
 export const url = 'https://food-delivery-backend-5b6g.onrender.com'

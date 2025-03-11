@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import "./Add.css";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import {useNavigate } from "react-router-dom";
 
-const Add = ({ url }) => {
-  const navigate = useNavigate();
-  const { token, admin } = useContext(StoreContext);
-
+const Add = ({url}) => {
+  const navigate=useNavigate();
+  const {token,admin} = useContext(StoreContext);
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -19,13 +20,13 @@ const Add = ({ url }) => {
   });
 
   const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setData((prevData) => ({ ...prevData, [name]: value }));
+    const name = event.target.name;
+    const value = event.target.value;
+    setData((data) => ({ ...data, [name]: value }));
   };
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
@@ -33,94 +34,75 @@ const Add = ({ url }) => {
     formData.append("category", data.category);
     formData.append("image", image);
 
-    try {
-      const response = await axios.post(`${url}/api/food/add`, formData, {
-        headers: { token },
+    const response = await axios.post(`${url}/api/food/add`, formData,{headers:{token}});
+    if (response.data.success) {
+      setData({
+        name: "",
+        description: "",
+        price: "",
+        category: "Salad",
       });
-
-      if (response.data.success) {
-        setData({
-          name: "",
-          description: "",
-          price: "",
-          category: "Salad",
-        });
-        setImage(false);
-        toast.success(response.data.message);
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Something went wrong!");
+      setImage(false);
+      toast.success(response.data.message);
+    } else {
+      toast.error(response.data.message);
     }
   };
-
-  useEffect(() => {
-    if (!admin && !token) {
+  useEffect(()=>{
+    if(!admin && !token){
       toast.error("Please Login First");
-      navigate("/");
+       navigate("/");
     }
-  }, [admin, token, navigate]);
-
+  },[])
   return (
-    <div className="add-container">
-      <form onSubmit={onSubmitHandler} className="add-form">
-        {/* Image Upload */}
-        <div className="add-img-upload">
-          <p>Upload Image</p>
-          <label htmlFor="image" className="image-upload-label">
+    <div className="add">
+      <form onSubmit={onSubmitHandler} className="flex-col">
+        <div className="add-img-upload flex-col">
+          <p>Upload image</p>
+          <label htmlFor="image">
             <img
               src={image ? URL.createObjectURL(image) : assets.upload_area}
-              alt="Product Preview"
-              className="upload-preview"
+              alt=""
             />
           </label>
           <input
+            onChange={(e) => setImage(e.target.files[0])}
             type="file"
             id="image"
             hidden
             required
-            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
-
-        {/* Product Name */}
-        <div className="add-product-name">
-          <p>Product Name</p>
+        <div className="add-product-name flex-col">
+          <p>Product name</p>
           <input
+            onChange={onChangeHandler}
+            value={data.name}
             type="text"
             name="name"
             placeholder="Type here"
             required
-            value={data.name}
-            onChange={onChangeHandler}
           />
         </div>
-
-        {/* Product Description */}
-        <div className="add-product-description">
-          <p>Product Description</p>
+        <div className="add-product-description flex-col">
+          <p>Product description</p>
           <textarea
+            onChange={onChangeHandler}
+            value={data.description}
             name="description"
             rows="6"
             placeholder="Write content here"
             required
-            value={data.description}
-            onChange={onChangeHandler}
-          />
+          ></textarea>
         </div>
-
-        {/* Category and Price */}
         <div className="add-category-price">
-          {/* Category */}
-          <div className="add-category">
-            <p>Product Category</p>
+          <div className="add-category flex-col">
+            <p>Product category</p>
             <select
               name="category"
               required
-              value={data.category}
               onChange={onChangeHandler}
+              value={data.category}
             >
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
@@ -132,21 +114,18 @@ const Add = ({ url }) => {
               <option value="Noodles">Noodles</option>
             </select>
           </div>
-
-          {/* Price */}
-          <div className="add-price">
-            <p>Product Price</p>
+          <div className="add-price flex-col">
+            <p>Product price</p>
             <input
-              type="number"
+              onChange={onChangeHandler}
+              value={data.price}
+              type="Number"
               name="price"
               placeholder="$20"
               required
-              value={data.price}
-              onChange={onChangeHandler}
             />
           </div>
         </div>
-
         <button type="submit" className="add-btn">
           ADD
         </button>
