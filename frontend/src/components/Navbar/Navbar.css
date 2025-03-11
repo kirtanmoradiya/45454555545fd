@@ -1,0 +1,249 @@
+/* Navbar container */
+.navbar {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 8vw;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* To avoid content hiding behind navbar */
+body {
+  padding-top: 80px;
+}
+
+/* Logo */
+.logo {
+  height: 50px;
+  cursor: pointer;
+}
+
+/* Menu links */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar-menu a,
+.navbar-menu Link {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu .active {
+  color: #ff914d;
+}
+
+.navbar-menu a:hover {
+  color: #ff914d;
+}
+
+/* Right section of the navbar */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Search icon */
+.navbar-search-icon img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 20px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-search-icon img:hover {
+  transform: scale(1.1);
+}
+
+/* Cart icon */
+.navbar-cart-icon {
+  position: relative;
+  margin-right: 20px;
+}
+
+.navbar-cart-icon img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.dot {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  
+  border-radius: 50%;
+}
+
+/* Sign in button */
+.navbar-right button {
+  background-color: #ff914d;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-right button:hover {
+  background-color: #ff7a26;
+}
+
+/* Profile image */
+.navbar-profile {
+  position: relative;
+}
+
+.navbar-profile img {
+  width: 30px;
+  height: 26px;
+  cursor: pointer;
+  border-radius: 50%;
+  transform: scale(1.1);
+}
+
+/* Profile dropdown */
+.nav-profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #fff;
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  padding: 10px 0;
+  display: none;
+}
+
+.navbar-profile:hover .nav-profile-dropdown {
+  display: block;
+}
+
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-profile-dropdown li:hover {
+  background-color: #f5f5f5;
+}
+
+.nav-profile-dropdown img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.nav-profile-dropdown p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.nav-profile-dropdown hr {
+  margin: 5px 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Search form */
+.navbar-search-form {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.navbar-search-form input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.navbar-search-form button {
+  background-color: #ff914d;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  margin-left: 8px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-search-form button:hover {
+  background-color: #ff7a26;
+}
+
+/* Responsive styles */
+@media (max-width: 750px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 4vw;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .navbar-right {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .navbar-search-form {
+    top: auto;
+    bottom: -60px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 90%;
+  }
+
+  .navbar-menu a,
+  .navbar-menu Link {
+    font-size: 16px;
+  }
+
+  .navbar-right button {
+    width: 100%;
+  }
+
+  .navbar-search-icon img,
+  .navbar-cart-icon img {
+    width: 28px;
+    height: 28px;
+  }
+}

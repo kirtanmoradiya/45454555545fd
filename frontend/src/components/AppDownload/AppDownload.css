@@ -1,0 +1,27 @@
+.app-download {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fefefe;
+  }
+  
+  .app-download p {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .app-download-platforms {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .download-btn {
+    height: 60px;
+    transition: transform 0.3s ease;
+  }
+  
+  .download-btn:hover {
+    transform: scale(1.05);
+  }
+  
